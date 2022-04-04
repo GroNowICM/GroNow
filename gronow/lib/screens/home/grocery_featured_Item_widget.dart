@@ -35,7 +35,7 @@ class GroceryFeaturedCard extends StatelessWidget {
           Image(
             image: AssetImage(groceryFeaturedItem.imagePath),
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           AppText(
