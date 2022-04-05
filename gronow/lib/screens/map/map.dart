@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:location/location.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -11,25 +12,36 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-  late PermissionStatus _status;
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+  LatLng _getLocation() {
+    bool locationPermission = Permission.location.status.isGranted as bool;
+    LatLng _center = LatLng(40.64165860185367, -8.653554472528402);
+    if (locationPermission) {
+      Location loc = new Location();
+      LocationData _locData = loc.getLocation() as LocationData;
+      _center =
+          LatLng(_locData.latitude as double, _locData.longitude as double);
+    }
+    return _center;
+  }
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
+  }
+
+  void _onMapCreated(GoogleMapController controller) async {
+    mapController = controller;
+    Location location = new Location();
     if (await Permission.location.serviceStatus.isEnabled) {
-      if (await Permission.location.status.isGranted) {
-        _status = await Permission.location.request();
+      if (!(await Permission.location.status.isGranted)) {
         if (await Permission.location.isPermanentlyDenied) {
           openAppSettings();
         }
       }
+    } else {
+      await location.requestService();
     }
-  }
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
   }
 
   @override
@@ -46,7 +58,8 @@ class _MapScreenState extends State<MapScreen> {
       width: MediaQuery.of(context).size.width,
       child: GoogleMap(
         onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(target: _center, zoom: 11.0),
+        initialCameraPosition:
+            CameraPosition(target: _getLocation(), zoom: 11.0),
       ),
     ));
   }
