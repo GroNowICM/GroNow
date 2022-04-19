@@ -17,7 +17,7 @@ class _MapScreenState extends State<MapScreen> {
     bool locationPermission = await Permission.location.status.isGranted;
     LatLng _center = LatLng(40.64165860185367, -8.653554472528402);
     if (locationPermission) {
-      Location loc = new Location();
+      Location loc = Location();
       LocationData _locData = await loc.getLocation();
       _center =
           LatLng(_locData.latitude as double, _locData.longitude as double);
@@ -32,7 +32,7 @@ class _MapScreenState extends State<MapScreen> {
 
   void _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
-    Location location = new Location();
+    Location location = Location();
     if (await Permission.location.serviceStatus.isEnabled) {
       if (!(await Permission.location.status.isGranted)) {
         if (await Permission.location.isPermanentlyDenied) {

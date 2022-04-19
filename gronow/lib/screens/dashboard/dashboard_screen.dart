@@ -5,6 +5,8 @@ import 'package:gronow/styles/colors.dart';
 import 'navigator_item.dart';
 
 class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({Key? key}) : super(key: key);
+
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
@@ -18,7 +20,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: navigatorItems[currentIndex].screen,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(15),
             topLeft: Radius.circular(15),
           ),
@@ -27,11 +29,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 color: Colors.black38.withOpacity(0.1),
                 spreadRadius: 0,
                 blurRadius: 37,
-                offset: Offset(0, -12)),
+                offset: const Offset(0, -12)),
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
           ),
@@ -45,8 +47,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             },
             type: BottomNavigationBarType.fixed,
             selectedItemColor: AppColors.primaryColor,
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
-            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
+            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
+            unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
             unselectedItemColor: Colors.black,
             items: navigatorItems.map((e) {
               return getNavigationBarItem(

@@ -17,11 +17,13 @@ class NavigatorItem {
 }
 
 List<NavigatorItem> navigatorItems = [
-  NavigatorItem("Shop", "assets/icons/shop_icon.svg", 0, HomeScreen()),
-  NavigatorItem("Explore", "assets/icons/explore_icon.svg", 1, ExploreScreen()),
-  NavigatorItem("Cart", "assets/icons/cart_icon.svg", 2, CartScreen()),
+  NavigatorItem("Shop", "assets/icons/shop_icon.svg", 0, const HomeScreen()),
+  NavigatorItem(
+      "Explore", "assets/icons/explore_icon.svg", 1, const ExploreScreen()),
+  NavigatorItem("Cart", "assets/icons/cart_icon.svg", 2, const CartScreen()),
   NavigatorItem("Map", "assets/icons/location_icon.svg", 3, const MapScreen()),
   // NavigatorItem(
   //     "Favourite", "assets/icons/favourite_icon.svg", 4, FavouriteScreen()),
-  NavigatorItem("Account", "assets/icons/account_icon.svg", 4, AccountScreen()),
+  NavigatorItem(
+      "Account", "assets/icons/account_icon.svg", 4, const AccountScreen()),
 ];

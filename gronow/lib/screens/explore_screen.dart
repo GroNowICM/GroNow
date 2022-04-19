@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/models/category_item.dart';
@@ -9,17 +8,19 @@ import 'package:gronow/widgets/search_bar_widget.dart';
 import 'category_items_screen.dart';
 
 List<Color> gridColors = [
-  Color(0xff53B175),
-  Color(0xffF8A44C),
-  Color(0xffF7A593),
-  Color(0xffD3B0E0),
-  Color(0xffFDE598),
-  Color(0xffB7DFF5),
-  Color(0xff836AF6),
-  Color(0xffD73B77),
+  const Color(0xff53B175),
+  const Color(0xffF8A44C),
+  const Color(0xffF7A593),
+  const Color(0xffD3B0E0),
+  const Color(0xffFDE598),
+  const Color(0xffB7DFF5),
+  const Color(0xff836AF6),
+  const Color(0xffD73B77),
 ];
 
 class ExploreScreen extends StatelessWidget {
+  const ExploreScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,7 @@ class ExploreScreen extends StatelessWidget {
 
   Widget getHeader() {
     return Column(
-      children: [
+      children: const [
         SizedBox(
           height: 20,
         ),
@@ -70,7 +71,7 @@ class ExploreScreen extends StatelessWidget {
             onCategoryItemClicked(context, categoryItem);
           },
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: CategoryItemCardWidget(
               item: categoryItem,
               color: gridColors[index % gridColors.length],
@@ -81,7 +82,7 @@ class ExploreScreen extends StatelessWidget {
 
       //Here is the place that we are getting flexible/ dynamic card for various images
       staggeredTiles: categoryItemsDemo
-          .map<StaggeredTile>((_) => StaggeredTile.fit(2))
+          .map<StaggeredTile>((_) => const StaggeredTile.fit(2))
           .toList(),
       mainAxisSpacing: 3.0,
       crossAxisSpacing: 4.0, // add some space
@@ -89,9 +90,9 @@ class ExploreScreen extends StatelessWidget {
   }
 
   void onCategoryItemClicked(BuildContext context, CategoryItem categoryItem) {
-    Navigator.of(context).push(new MaterialPageRoute(
+    Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) {
-        return CategoryItemsScreen();
+        return const CategoryItemsScreen();
       },
     ));
   }

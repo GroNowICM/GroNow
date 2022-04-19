@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   //One instance, needs factory
+  // ignore: unused_field
   static late AppColors _instance;
   factory AppColors() => _instance = AppColors._();
 

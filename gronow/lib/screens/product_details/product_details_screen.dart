@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
@@ -12,6 +9,7 @@ import 'favourite_toggle_icon_widget.dart';
 class ProductDetailsScreen extends StatefulWidget {
   final GroceryItem groceryItem;
 
+  // ignore: use_key_in_widget_constructors
   const ProductDetailsScreen(this.groceryItem);
 
   @override
@@ -37,18 +35,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       contentPadding: EdgeInsets.zero,
                       title: Text(
                         widget.groceryItem.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       subtitle: AppText(
                         text: widget.groceryItem.description,
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff7C7C7C),
+                        color: const Color(0xff7C7C7C),
                       ),
-                      trailing: FavoriteToggleIcon(),
+                      trailing: const FavoriteToggleIcon(),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
                         ItemCounterWidget(
@@ -58,32 +56,32 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             });
                           },
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Text(
                           "\$${getTotalPrice().toStringAsFixed(2)}",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         )
                       ],
                     ),
-                    Spacer(),
-                    Divider(thickness: 1),
+                    const Spacer(),
+                    const Divider(thickness: 1),
                     getProductDataRowWidget("Product Details"),
-                    Divider(thickness: 1),
+                    const Divider(thickness: 1),
                     getProductDataRowWidget("Nutritions",
                         customWidget: nutritionWidget()),
-                    Divider(thickness: 1),
+                    const Divider(thickness: 1),
                     getProductDataRowWidget(
                       "Review",
                       customWidget: ratingWidget(),
                     ),
-                    Spacer(),
-                    AppButton(
+                    const Spacer(),
+                    const AppButton(
                       label: "Add To Basket",
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),
@@ -97,22 +95,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget getImageHeaderWidget() {
     return Container(
       height: 250,
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
       width: double.maxFinite,
       decoration: BoxDecoration(
         color: Colors.blue,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(25),
           bottomRight: Radius.circular(25),
         ),
-        gradient: new LinearGradient(
+        gradient: LinearGradient(
             colors: [
               const Color(0xFF3366FF).withOpacity(0.1),
               const Color(0xFF3366FF).withOpacity(0.09),
             ],
             begin: const FractionalOffset(0.0, 0.0),
             end: const FractionalOffset(0.0, 1.0),
-            stops: [0.0, 1.0],
+            stops: const [0.0, 1.0],
             tileMode: TileMode.clamp),
       ),
       child: Image(
@@ -123,21 +121,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   Widget getProductDataRowWidget(String label, {Widget? customWidget}) {
     return Container(
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         top: 20,
         bottom: 20,
       ),
       child: Row(
         children: [
           AppText(text: label, fontWeight: FontWeight.w600, fontSize: 16),
-          Spacer(),
+          const Spacer(),
           if (customWidget != null) ...[
             customWidget,
-            SizedBox(
+            const SizedBox(
               width: 20,
             )
           ],
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios,
             size: 20,
           )
@@ -148,12 +146,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   Widget nutritionWidget() {
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: Color(0xffEBEBEB),
+        color: const Color(0xffEBEBEB),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: AppText(
+      child: const AppText(
         text: "100gm",
         fontWeight: FontWeight.w600,
         fontSize: 12,
@@ -164,7 +162,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   Widget ratingWidget() {
     Widget starIcon() {
-      return Icon(
+      return const Icon(
         Icons.star,
         color: Color(0xffF3603F),
         size: 20,

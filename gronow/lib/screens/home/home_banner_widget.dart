@@ -3,6 +3,8 @@ import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/styles/colors.dart';
 
 class HomeBanner extends StatelessWidget {
+  const HomeBanner({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +12,7 @@ class HomeBanner extends StatelessWidget {
       height: 115,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(
+          image: const DecorationImage(
               image: AssetImage(
                 "assets/images/banner_background.png",
               ),
@@ -18,15 +20,15 @@ class HomeBanner extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Image.asset(
               "assets/images/banner_image.png",
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               AppText(
                 text: "Fresh Vegetables",
                 fontSize: 22,
@@ -40,7 +42,7 @@ class HomeBanner extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           )
         ],

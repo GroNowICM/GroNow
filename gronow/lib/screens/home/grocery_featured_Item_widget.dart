@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/styles/colors.dart';
@@ -26,7 +28,7 @@ class GroceryFeaturedCard extends StatelessWidget {
     return Container(
       width: 250,
       height: 105,
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 17),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 17),
       decoration: BoxDecoration(
           color: color.withOpacity(0.25),
           borderRadius: BorderRadius.circular(18)),

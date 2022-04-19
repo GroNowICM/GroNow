@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FavoriteToggleIcon extends StatefulWidget {
+  const FavoriteToggleIcon({Key? key}) : super(key: key);
+
   @override
   _FavoriteToggleIconState createState() => _FavoriteToggleIconState();
 }

@@ -1,45 +1,50 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 
 class OrderAcceptedScreen extends StatelessWidget {
+  const OrderAcceptedScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.maxFinite,
-        padding: EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(
+            const Spacer(
               flex: 10,
             ),
             SvgPicture.asset("assets/icons/order_accepted_icon.svg"),
-            Spacer(
+            const Spacer(
               flex: 8,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: const Text(
                 "You Order Has Been Accepted",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
               ),
             ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text(
+            const Spacer(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: const Text(
                 "Your item has been placed and is on it's way to being processed",
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 16,
-                    color: Color(0xff7C7C7C),
+                    color: const Color(0xff7C7C7C),
                     fontWeight: FontWeight.w600),
               ),
             ),
-            Spacer(
+            const Spacer(
               flex: 8,
             ),
             AppButton(
@@ -48,19 +53,20 @@ class OrderAcceptedScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            Spacer(
+            const Spacer(
               flex: 2,
             ),
             InkWell(
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Text(
+              child: const Text(
                 "Back To Home",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
-            Spacer(
+            const Spacer(
               flex: 10,
             ),
           ],

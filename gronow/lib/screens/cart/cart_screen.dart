@@ -7,6 +7,8 @@ import 'package:gronow/widgets/chart_item_widget.dart';
 import 'checkout_bottom_sheet.dart';
 
 class CartScreen extends StatelessWidget {
+  const CartScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,14 +16,14 @@ class CartScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
-              Text(
+              const Text(
                 "My Cart",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Column(
@@ -29,7 +31,7 @@ class CartScreen extends StatelessWidget {
                   addToLastChild: false,
                   widgets: demoItems.map((e) {
                     return Container(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 25,
                       ),
                       width: double.maxFinite,
@@ -38,8 +40,8 @@ class CartScreen extends StatelessWidget {
                       ),
                     );
                   }).toList(),
-                  seperator: Padding(
-                    padding: const EdgeInsets.symmetric(
+                  seperator: const Padding(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 25,
                     ),
                     child: Divider(
@@ -48,7 +50,7 @@ class CartScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
               ),
               getCheckoutButton(context)
@@ -61,11 +63,11 @@ class CartScreen extends StatelessWidget {
 
   Widget getCheckoutButton(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       child: AppButton(
         label: "Go To Check Out",
         fontWeight: FontWeight.w600,
-        padding: EdgeInsets.symmetric(vertical: 30),
+        padding: const EdgeInsets.symmetric(vertical: 30),
         trailingWidget: getButtonPriceWidget(),
         onPressed: () {
           showBottomSheet(context);
@@ -76,12 +78,12 @@ class CartScreen extends StatelessWidget {
 
   Widget getButtonPriceWidget() {
     return Container(
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: Color(0xff489E67),
+        color: const Color(0xff489E67),
         borderRadius: BorderRadius.circular(4),
       ),
-      child: Text(
+      child: const Text(
         "\$12.96",
         style: TextStyle(fontWeight: FontWeight.w600),
       ),
@@ -94,7 +96,7 @@ class CartScreen extends StatelessWidget {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (BuildContext bc) {
-          return CheckoutBottomSheet();
+          return const CheckoutBottomSheet();
         });
   }
 }

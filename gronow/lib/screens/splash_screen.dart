@@ -6,6 +6,8 @@ import 'package:gronow/styles/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -22,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void onTimerFinished() {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (BuildContext context) {
-        return WelcomeScreen();
+        return const WelcomeScreen();
       },
     ));
   }

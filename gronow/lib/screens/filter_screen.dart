@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/styles/colors.dart';
 
 class FilterScreen extends StatelessWidget {
+  const FilterScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,14 +17,12 @@ class FilterScreen extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Container(
-            child: Icon(
-              Icons.close,
-              color: Colors.black,
-            ),
+          child: const Icon(
+            Icons.close,
+            color: Colors.black,
           ),
         ),
-        title: AppText(
+        title: const AppText(
           text: "Filters",
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -31,9 +30,9 @@ class FilterScreen extends StatelessWidget {
       ),
       body: Container(
         width: double.maxFinite,
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         decoration: BoxDecoration(
-          color: Color(0xFFF2F3F2),
+          color: const Color(0xFFF2F3F2),
           borderRadius: BorderRadius.circular(30),
         ),
         child: Column(
@@ -41,25 +40,25 @@ class FilterScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getLabel("Categories"),
-            SizedBox(height: 15),
-            OptionItem(text: "Eggs"),
-            SizedBox(height: 15),
-            OptionItem(text: "Noodles & Pasta"),
-            SizedBox(height: 15),
-            OptionItem(text: "Chips & Crisps"),
-            SizedBox(height: 15),
-            OptionItem(text: "Fast Food"),
-            SizedBox(height: 30),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Eggs"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Noodles & Pasta"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Chips & Crisps"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Fast Food"),
+            const SizedBox(height: 30),
             getLabel("Brand"),
-            SizedBox(height: 15),
-            OptionItem(text: "Individual Collection"),
-            SizedBox(height: 15),
-            OptionItem(text: "Cocacola"),
-            SizedBox(height: 15),
-            OptionItem(text: "Ifad"),
-            SizedBox(height: 15),
-            OptionItem(text: "Kazi Formas"),
-            Spacer(),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Individual Collection"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Cocacola"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Ifad"),
+            const SizedBox(height: 15),
+            const OptionItem(text: "Kazi Formas"),
+            const Spacer(),
             AppButton(
               label: "Apply Filter",
               fontWeight: FontWeight.w600,
@@ -76,7 +75,7 @@ class FilterScreen extends StatelessWidget {
   Widget getLabel(String text) {
     return Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
           color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
@@ -102,16 +101,14 @@ class _OptionItemState extends State<OptionItem> {
           checked = !checked;
         });
       },
-      child: Container(
-        child: Row(
-          children: [
-            getCheckBox(),
-            SizedBox(
-              width: 12,
-            ),
-            getTextWidget(),
-          ],
-        ),
+      child: Row(
+        children: [
+          getCheckBox(),
+          const SizedBox(
+            width: 12,
+          ),
+          getTextWidget(),
+        ],
       ),
     );
   }
@@ -129,15 +126,16 @@ class _OptionItemState extends State<OptionItem> {
 
   Widget getCheckBox() {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: SizedBox(
         width: 25,
         height: 25,
         child: Container(
+          // ignore: unnecessary_new
           decoration: new BoxDecoration(
               border: Border.all(
-                  width: checked ? 0 : 1.5, color: Color(0xffB1B1B1)),
-              borderRadius: new BorderRadius.circular(8),
+                  width: checked ? 0 : 1.5, color: const Color(0xffB1B1B1)),
+              borderRadius: BorderRadius.circular(8),
               color: checked ? AppColors.primaryColor : Colors.transparent),
           child: Theme(
             data: ThemeData(

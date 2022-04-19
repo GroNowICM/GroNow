@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gronow/common_widgets/app_text.dart';
@@ -9,6 +8,8 @@ import 'package:gronow/widgets/grocery_item_card_widget.dart';
 import 'filter_screen.dart';
 
 class CategoryItemsScreen extends StatelessWidget {
+  const CategoryItemsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +23,8 @@ class CategoryItemsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Container(
-            padding: EdgeInsets.only(left: 25),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 25),
+            child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
@@ -34,12 +35,12 @@ class CategoryItemsScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FilterScreen()),
+                MaterialPageRoute(builder: (context) => const FilterScreen()),
               );
             },
             child: Container(
-              padding: EdgeInsets.only(right: 25),
-              child: Icon(
+              padding: const EdgeInsets.only(right: 25),
+              child: const Icon(
                 Icons.sort,
                 color: Colors.black,
               ),
@@ -47,10 +48,10 @@ class CategoryItemsScreen extends StatelessWidget {
           ),
         ],
         title: Container(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 25,
           ),
-          child: AppText(
+          child: const AppText(
             text: "Beverages",
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -67,15 +68,16 @@ class CategoryItemsScreen extends StatelessWidget {
               onItemClicked(context, groceryItem);
             },
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: GroceryItemCardWidget(
                 item: groceryItem,
               ),
             ),
           );
         }).toList(),
-        staggeredTiles:
-            beverages.map<StaggeredTile>((_) => StaggeredTile.fit(2)).toList(),
+        staggeredTiles: beverages
+            .map<StaggeredTile>((_) => const StaggeredTile.fit(2))
+            .toList(),
         mainAxisSpacing: 3.0,
         crossAxisSpacing: 0.0, // add some space
       ),

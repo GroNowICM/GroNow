@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/screens/dashboard/dashboard_screen.dart';
@@ -9,12 +8,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 class WelcomeScreen extends StatelessWidget {
   final String imagePath = "assets/images/welcome_image.png";
 
+  const WelcomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.primaryColor,
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(imagePath),
@@ -25,21 +26,21 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Spacer(),
+                const Spacer(),
                 icon(),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 welcomeTextWidget(),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 sloganText(),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 getButton(context),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 )
               ],
@@ -59,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget welcomeTextWidget() {
     return Column(
-      children: [
+      children: const [
         AppText(
           text: "Welcome",
           fontSize: 48,
@@ -81,7 +82,7 @@ class WelcomeScreen extends StatelessWidget {
       text: "Get your grecories as fast as in hour",
       fontSize: 16,
       fontWeight: FontWeight.w600,
-      color: Color(0xffFCFCFC).withOpacity(0.7),
+      color: const Color(0xffFCFCFC).withOpacity(0.7),
     );
   }
 
@@ -89,7 +90,7 @@ class WelcomeScreen extends StatelessWidget {
     return AppButton(
       label: "Get Started",
       fontWeight: FontWeight.w600,
-      padding: EdgeInsets.symmetric(vertical: 25),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       onPressed: () {
         onGetStartedClicked(context);
       },
@@ -97,9 +98,9 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   void onGetStartedClicked(BuildContext context) {
-    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (BuildContext context) {
-        return DashboardScreen();
+        return const DashboardScreen();
       },
     ));
   }

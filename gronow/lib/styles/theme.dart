@@ -4,7 +4,8 @@ import 'package:gronow/styles/colors.dart';
 String gilroyFontFamily = "Gilroy";
 
 ThemeData themeData = ThemeData(
-  accentColor: AppColors.primaryColor,
+  //colorScheme:
+  //    themeData.colorScheme.copyWith(secondary: AppColors.primaryColor),
   fontFamily: gilroyFontFamily,
   visualDensity: VisualDensity.adaptivePlatformDensity,
 );
