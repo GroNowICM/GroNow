@@ -20,16 +20,10 @@ class HomeScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                SvgPicture.asset("assets/icons/app_icon_color.svg"),
-                const SizedBox(
-                  height: 5,
-                ),
-                padded(locationWidget()),
-                const SizedBox(
-                  height: 15,
+                Container(
+                  height: 100,
+                  width: 100,
+                  child: SvgPicture.asset("assets/icons/front.svg"),
                 ),
                 padded(const SearchBarWidget()),
                 const SizedBox(
@@ -151,25 +145,6 @@ class HomeScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppColors.primaryColor),
         ),
-      ],
-    );
-  }
-
-  Widget locationWidget() {
-    String locationIconPath = "assets/icons/location_icon.svg";
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset(
-          locationIconPath,
-        ),
-        const SizedBox(
-          width: 8,
-        ),
-        const Text(
-          "Khartoum,Sudan",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        )
       ],
     );
   }
