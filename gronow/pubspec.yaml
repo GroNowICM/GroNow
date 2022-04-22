@@ -41,6 +41,7 @@ dependencies:
   permission_handler: ^9.2.0
   location: ^4.2.0
   geolocator: ^8.2.0
+  email_validator: ^2.0.1
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/screens/dashboard/dashboard_screen.dart';
+import 'package:gronow/screens/login_screen.dart';
 import 'package:gronow/styles/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -100,7 +101,7 @@ class WelcomeScreen extends StatelessWidget {
   void onGetStartedClicked(BuildContext context) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (BuildContext context) {
-        return const DashboardScreen();
+        return const LoginPage(title: 'Login UI');
       },
     ));
   }
