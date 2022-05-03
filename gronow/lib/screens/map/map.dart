@@ -12,7 +12,6 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-
   Future<LatLng> _getLocation() async {
     bool locationPermission = await Permission.location.status.isGranted;
     LatLng _center = const LatLng(40.64165860185367, -8.653554472528402);
@@ -35,8 +34,11 @@ class _MapScreenState extends State<MapScreen> {
     Location location = Location();
     if (await Permission.location.serviceStatus.isEnabled) {
       if (!(await Permission.location.status.isGranted)) {
+        location.requestPermission();
+        setState(() {});
         if (await Permission.location.isPermanentlyDenied) {
           openAppSettings();
+          setState(() {});
         }
       }
     } else {
