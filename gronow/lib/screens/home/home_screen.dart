@@ -1,11 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_blue/flutter_blue.dart';
+import 'package:gronow/helpers/bluetooth.dart';
 import 'package:gronow/models/grocery_item.dart';
+import 'package:gronow/screens/map/map.dart';
 import 'package:gronow/screens/product_details/product_details_screen.dart';
 import 'package:gronow/styles/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gronow/widgets/grocery_item_card_widget.dart';
 import 'package:gronow/widgets/search_bar_widget.dart';
-import 'package:gronow/screens/home/cameraScreen.dart';
+// import 'package:gronow/screens/home/cameraScreen.dart';
+import 'package:gronow/screens/beacon-courier/beacon.dart';
+import 'package:gronow/screens/beacon-client/beacon.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'grocery_featured_Item_widget.dart';
 import 'home_banner_widget.dart';
 
@@ -23,42 +32,88 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       drawer: Drawer(
+        backgroundColor: AppColors.lightGrey,
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
         // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 240, 242, 245),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: AppColors.background,
+                ),
+                child: Text('Drawer Header'),
               ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Camera'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return CameraScreen();
-                  },
-                ));
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              Wrap(
+                // Important: Remove any padding from the ListView.
+                runSpacing: 10,
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.camera_alt_outlined),
+                    title: const Text('Camera'),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const Scaffold();
+                        },
+                      ));
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.map_outlined),
+                    title: const Text('Map'),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return const MapScreen();
+                        },
+                      ));
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Courier Beacon'),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return CourierBeaconScreen();
+                        },
+                      ));
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Client Beacon'),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return ClientBeaconScreen();
+                        },
+                      ));
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Item 2'),
+                    onTap: () {
+                      // Update the state of the app
+                      // ...
+                      // Then close the drawer
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       body: SafeArea(
