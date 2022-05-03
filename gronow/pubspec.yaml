@@ -43,6 +43,8 @@ dependencies:
   email_validator: ^2.0.1
   camera: ^0.9.4+21
   qr_code_scanner: ^0.7.0
+  flutter_blue: ^0.8.0
+  flutter_beacon: ^0.5.1
 
 dev_dependencies:
   flutter_test:
