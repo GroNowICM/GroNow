@@ -12,10 +12,9 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-
   Future<LatLng> _getLocation() async {
     bool locationPermission = await Permission.location.status.isGranted;
-    LatLng _center = LatLng(40.64165860185367, -8.653554472528402);
+    LatLng _center = const LatLng(40.64165860185367, -8.653554472528402);
     if (locationPermission) {
       Location loc = Location();
       LocationData _locData = await loc.getLocation();
@@ -35,8 +34,11 @@ class _MapScreenState extends State<MapScreen> {
     Location location = Location();
     if (await Permission.location.serviceStatus.isEnabled) {
       if (!(await Permission.location.status.isGranted)) {
+        location.requestPermission();
+        setState(() {});
         if (await Permission.location.isPermanentlyDenied) {
           openAppSettings();
+          setState(() {});
         }
       }
     } else {
@@ -62,12 +64,19 @@ class _MapScreenState extends State<MapScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             }
-            print("aaaaaaaaaaaaaaaaaaaa");
-            print(snapshot.data);
             return GoogleMap(
               onMapCreated: _onMapCreated,
+              markers: {
+                Marker(
+                  markerId: MarkerId(snapshot.data.toString()),
+                  position: snapshot.data as LatLng,
+                  infoWindow: const InfoWindow(title: "You"),
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueOrange),
+                ),
+              },
               initialCameraPosition:
-                  CameraPosition(target: snapshot.data as LatLng, zoom: 11.0),
+                  CameraPosition(target: snapshot.data as LatLng, zoom: 15.5),
             );
           }),
     ));
