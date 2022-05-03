@@ -46,6 +46,7 @@ dependencies:
   flutter_blue: ^0.8.0
   flutter_beacon: ^0.5.1
   get: ^4.6.1
+  beacon_broadcast: ^0.3.0
 
 dev_dependencies:
   flutter_test:

@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  beacon_broadcast:
+    dependency: "direct main"
+    description:
+      name: beacon_broadcast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   boolean_selector:
     dependency: transitive
     description:
