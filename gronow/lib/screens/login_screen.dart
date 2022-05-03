@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:gronow/screens/home/home_screen.dart';
 import 'package:gronow/styles/colors.dart';
 import 'register_screen.dart';
 
@@ -89,7 +90,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),

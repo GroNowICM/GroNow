@@ -5,7 +5,7 @@ import 'package:gronow/styles/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gronow/widgets/grocery_item_card_widget.dart';
 import 'package:gronow/widgets/search_bar_widget.dart';
-
+import 'package:gronow/screens/home/cameraScreen.dart';
 import 'grocery_featured_Item_widget.dart';
 import 'home_banner_widget.dart';
 
@@ -15,16 +15,57 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryColor,
+        title: SvgPicture.asset(
+          "assets/icons/front.svg",
+          fit: BoxFit.scaleDown,
+        ),
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 240, 242, 245),
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Camera'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return CameraScreen();
+                  },
+                ));
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  child: SvgPicture.asset("assets/icons/front.svg"),
-                ),
                 padded(const SearchBarWidget()),
                 const SizedBox(
                   height: 25,

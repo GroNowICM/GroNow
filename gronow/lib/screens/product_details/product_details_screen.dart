@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/models/grocery_item.dart';
+import 'package:gronow/screens/cart/cart_screen.dart';
 import 'package:gronow/widgets/item_counter_widget.dart';
 
+import '../home/home_screen.dart';
 import 'favourite_toggle_icon_widget.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -78,7 +80,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       customWidget: ratingWidget(),
                     ),
                     const Spacer(),
-                    const AppButton(
+                    AppButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartScreen(),
+                          ),
+                        );
+                      },
                       label: "Add To Basket",
                     ),
                     const Spacer(),
