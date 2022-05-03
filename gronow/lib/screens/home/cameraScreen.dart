@@ -4,6 +4,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
+import '../../styles/colors.dart';
+
 class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key}) : super(key: key);
 
@@ -35,6 +37,10 @@ class _CameraAppState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            title: const Text("Courier Beacon"),
+            backgroundColor: AppColors.primaryColor,
+          ),
           body: Stack(
             alignment: Alignment.center,
             children: <Widget>[

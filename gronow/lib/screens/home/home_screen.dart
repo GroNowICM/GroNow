@@ -1,8 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
-import 'package:gronow/helpers/bluetooth.dart';
 import 'package:gronow/models/grocery_item.dart';
 import 'package:gronow/screens/map/map.dart';
 import 'package:gronow/screens/product_details/product_details_screen.dart';
@@ -10,10 +8,9 @@ import 'package:gronow/styles/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gronow/widgets/grocery_item_card_widget.dart';
 import 'package:gronow/widgets/search_bar_widget.dart';
-// import 'package:gronow/screens/home/cameraScreen.dart';
+import 'package:gronow/screens/home/cameraScreen.dart';
 import 'package:gronow/screens/beacon-courier/beacon.dart';
 import 'package:gronow/screens/beacon-client/beacon.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import 'grocery_featured_Item_widget.dart';
 import 'home_banner_widget.dart';
@@ -54,12 +51,10 @@ class HomeScreen extends StatelessWidget {
                     leading: const Icon(Icons.camera_alt_outlined),
                     title: const Text('Camera'),
                     onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return const Scaffold();
+                          return const CameraScreen();
                         },
                       ));
                     },
@@ -68,6 +63,7 @@ class HomeScreen extends StatelessWidget {
                     leading: const Icon(Icons.map_outlined),
                     title: const Text('Map'),
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
                           return const MapScreen();
@@ -78,9 +74,7 @@ class HomeScreen extends StatelessWidget {
                   ListTile(
                     title: const Text('Courier Beacon'),
                     onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
+                      Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) {
                           return CourierBeaconScreen();
@@ -91,9 +85,7 @@ class HomeScreen extends StatelessWidget {
                   ListTile(
                     title: const Text('Client Beacon'),
                     onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
+                      Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) {
                           return ClientBeaconScreen();
