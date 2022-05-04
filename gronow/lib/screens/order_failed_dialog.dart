@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
+import 'package:gronow/screens/home/home_screen.dart';
 import 'package:gronow/screens/order_accepted_screen.dart';
 
 class OrderFailedDialogue extends StatelessWidget {
@@ -72,11 +73,10 @@ class OrderFailedDialogue extends StatelessWidget {
               label: "Please Try Again",
               fontWeight: FontWeight.w600,
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const OrderAcceptedScreen();
-                  },
-                ));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return const OrderAcceptedScreen();
+                }));
               },
             ),
             const Spacer(
@@ -85,6 +85,11 @@ class OrderFailedDialogue extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const HomeScreen();
+                  },
+                ));
               },
               child: const AppText(
                 text: "Back To Home",

@@ -22,74 +22,88 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
 
   int amount = 1;
 
+  bool dismiss = false;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      margin: const EdgeInsets.symmetric(
-        vertical: 30,
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            imageWidget(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(
-                  text: widget.item.name,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                AppText(
-                    text: widget.item.description,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.darkGrey),
-                const SizedBox(
-                  height: 12,
-                ),
-                const Spacer(),
-                ItemCounterWidget(
-                  onAmountChanged: (newAmount) {
-                    setState(() {
-                      amount = newAmount;
-                    });
-                  },
-                )
-              ],
+    return dismiss
+        ? Column()
+        : Container(
+            height: height,
+            margin: const EdgeInsets.symmetric(
+              vertical: 30,
             ),
-            Column(
-              children: [
-                const Icon(
-                  Icons.close,
-                  color: AppColors.darkGrey,
-                  size: 25,
-                ),
-                const Spacer(
-                  flex: 5,
-                ),
-                SizedBox(
-                  width: 70,
-                  child: AppText(
-                    text: "\$${getPrice().toStringAsFixed(2)}",
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    textAlign: TextAlign.right,
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  imageWidget(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppText(
+                        text: widget.item.name,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      AppText(
+                          text: widget.item.description,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkGrey),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Spacer(),
+                      ItemCounterWidget(
+                        onAmountChanged: (newAmount) {
+                          setState(() {
+                            amount = newAmount;
+                          });
+                        },
+                      )
+                    ],
                   ),
-                ),
-                const Spacer(),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          dismiss = true;
+                          setState(() {});
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          color: AppColors.darkGrey,
+                          size: 25,
+                        ),
+                      ),
+                      const Spacer(
+                        flex: 5,
+                      ),
+                      SizedBox(
+                        width: 70,
+                        child: AppText(
+                          text: "\$${getPrice().toStringAsFixed(2)}",
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const Divider(
+                    thickness: 1,
+                    color: Color(0xFFE2E2E2),
+                  )
+                ],
+              ),
+            ),
+          );
   }
 
   Widget imageWidget() {

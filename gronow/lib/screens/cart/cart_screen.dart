@@ -4,6 +4,7 @@ import 'package:gronow/helpers/column_with_seprator.dart';
 import 'package:gronow/models/grocery_item.dart';
 import 'package:gronow/widgets/chart_item_widget.dart';
 
+import '../../styles/colors.dart';
 import 'checkout_bottom_sheet.dart';
 
 class CartScreen extends StatelessWidget {
@@ -12,20 +13,14 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Cart"),
+        backgroundColor: AppColors.primaryColor,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 25,
-              ),
-              const Text(
-                "My Cart",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               Column(
                 children: getChildrenWithSeperator(
                   addToLastChild: false,

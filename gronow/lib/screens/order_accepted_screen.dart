@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gronow/common_widgets/app_button.dart';
+import 'package:gronow/screens/home/home_screen.dart';
+import 'package:gronow/screens/map/map.dart';
 
 class OrderAcceptedScreen extends StatelessWidget {
   const OrderAcceptedScreen({Key? key}) : super(key: key);
@@ -51,6 +53,11 @@ class OrderAcceptedScreen extends StatelessWidget {
               label: "Track Order",
               onPressed: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const MapScreen();
+                  },
+                ));
               },
             ),
             const Spacer(
@@ -59,6 +66,11 @@ class OrderAcceptedScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const HomeScreen();
+                  },
+                ));
               },
               child: const Text(
                 "Back To Home",

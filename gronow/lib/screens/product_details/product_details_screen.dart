@@ -5,6 +5,7 @@ import 'package:gronow/models/grocery_item.dart';
 import 'package:gronow/screens/cart/cart_screen.dart';
 import 'package:gronow/widgets/item_counter_widget.dart';
 
+import '../../styles/colors.dart';
 import '../home/home_screen.dart';
 import 'favourite_toggle_icon_widget.dart';
 
@@ -24,6 +25,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.groceryItem.name),
+        backgroundColor: AppColors.primaryColor,
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -82,7 +87,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     const Spacer(),
                     AppButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const CartScreen(),

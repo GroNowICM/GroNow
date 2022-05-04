@@ -49,7 +49,10 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.camera_alt_outlined),
-                    title: const Text('Camera'),
+                    title: const Text(
+                      'Camera',
+                      style: TextStyle(color: Colors.black),
+                    ),
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
@@ -61,7 +64,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.map_outlined),
-                    title: const Text('Map'),
+                    title: const Text(
+                      'Map',
+                      style: TextStyle(color: Colors.black),
+                    ),
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
@@ -72,7 +78,10 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    title: const Text('Courier Beacon'),
+                    title: const Text(
+                      'Courier Beacon',
+                      style: TextStyle(color: Colors.black),
+                    ),
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
@@ -83,7 +92,10 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    title: const Text('Client Beacon'),
+                    title: const Text(
+                      'Client Beacon',
+                      style: TextStyle(color: Colors.black),
+                    ),
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
@@ -94,7 +106,10 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    title: const Text('Item 2'),
+                    title: const Text(
+                      'Item 2',
+                      style: TextStyle(color: Colors.black),
+                    ),
                     onTap: () {
                       // Update the state of the app
                       // ...

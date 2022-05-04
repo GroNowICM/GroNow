@@ -14,32 +14,32 @@ class GroceryItem {
 var demoItems = [
   GroceryItem(
       name: "Organic Bananas",
-      description: "7pcs, Priceg",
+      description: "7pcs, Price/Kg",
       price: 4.99,
       imagePath: "assets/images/grocery_images/banana.png"),
   GroceryItem(
       name: "Red Apple",
-      description: "1kg, Priceg",
+      description: "1kg, Price/Kg",
       price: 4.99,
       imagePath: "assets/images/grocery_images/apple.png"),
   GroceryItem(
       name: "Bell Pepper Red",
-      description: "1kg, Priceg",
+      description: "1kg, Price/Kg",
       price: 4.99,
       imagePath: "assets/images/grocery_images/pepper.png"),
   GroceryItem(
       name: "Ginger",
-      description: "250gm, Priceg",
+      description: "250gm, Price/Kg",
       price: 4.99,
       imagePath: "assets/images/grocery_images/ginger.png"),
   GroceryItem(
       name: "Ginger",
-      description: "250gm, Priceg",
+      description: "250gm, Price/Kg",
       price: 4.99,
       imagePath: "assets/images/grocery_images/beef.png"),
   GroceryItem(
       name: "Ginger",
-      description: "250gm, Priceg",
+      description: "250gm, Price/Kg",
       price: 4.99,
       imagePath: "assets/images/grocery_images/chicken.png"),
 ];
