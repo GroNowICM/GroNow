@@ -58,13 +58,16 @@ class _ClientBeaconScreenState extends State<ClientBeaconScreen> {
 
       _streamRanging =
           flutterBeacon.ranging(regions).listen((RangingResult result) {
-        log(result.beacons.toString());
+        log("checking for results");
       });
       _streamRanging?.onData((data) {
+        log(data.beacons.toString());
         for (var i = 0; i < data.beacons.length; i++) {
           //add courier crl
-          if (data.beacons[i].proximityUUID == "") {
+          if (data.beacons[i].proximityUUID ==
+              "FF11EE22-DD33-CC44-BB55-AA6699778888") {
             sendNotification();
+            stopScanning();
           }
         }
       });
