@@ -65,6 +65,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                             amount = newAmount;
                           });
                         },
+                        item: widget.item,
                       )
                     ],
                   ),
@@ -72,7 +73,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          dismiss = true;
+                          cart.remove(widget.item);
                           setState(() {});
                         },
                         child: const Icon(

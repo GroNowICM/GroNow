@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 
-import '../order_failed_dialog.dart';
+import '../../models/grocery_item.dart';
+import '../order_accepted_screen.dart';
 
 class CheckoutBottomSheet extends StatefulWidget {
   const CheckoutBottomSheet({Key? key}) : super(key: key);
@@ -46,13 +47,9 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
             height: 45,
           ),
           getDivider(),
-          checkoutRow("Delivery", trailingText: "Select Method"),
-          getDivider(),
           checkoutRow("Payment", trailingWidget: const Icon(Icons.payment)),
           getDivider(),
-          checkoutRow("Promo Code", trailingText: "Pick Discount"),
-          getDivider(),
-          checkoutRow("Total Cost", trailingText: "\$13.97"),
+          checkoutRow("Total Cost", trailingText: "\$${getPrice()}"),
           getDivider(),
           const SizedBox(
             height: 30,
@@ -144,9 +141,20 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
     );
   }
 
+  String getPrice() {
+    var price = 0.0;
+
+    for (var item in cart) {
+      price = price + item.price;
+    }
+
+    return price.toStringAsFixed(2);
+  }
+
   void onPlaceOrderClicked() {
     Navigator.pop(context);
     showDialog(
-        builder: (context) => const OrderFailedDialogue(), context: context);
+        builder: (context) => const OrderAcceptedScreen(), context: context);
+    cart = [];
   }
 }

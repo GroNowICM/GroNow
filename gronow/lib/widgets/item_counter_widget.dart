@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gronow/models/grocery_item.dart';
 import 'package:gronow/styles/colors.dart';
 
 class ItemCounterWidget extends StatefulWidget {
   final Function onAmountChanged;
+  final GroceryItem item;
 
-  const ItemCounterWidget({Key? key, required this.onAmountChanged})
+  const ItemCounterWidget(
+      {Key? key, required this.onAmountChanged, required this.item})
       : super(key: key);
 
   @override
@@ -18,8 +21,10 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        iconWidget(Icons.remove,
-            iconColor: AppColors.darkGrey, onPressed: decrementAmount),
+        iconWidget(Icons.remove, iconColor: AppColors.darkGrey, onPressed: () {
+          cart.add(widget.item);
+          decrementAmount();
+        }),
         const SizedBox(width: 18),
         SizedBox(
             width: 30,
@@ -27,8 +32,10 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
                 child: getText(
                     text: amount.toString(), fontSize: 18, isBold: true))),
         const SizedBox(width: 18),
-        iconWidget(Icons.add,
-            iconColor: AppColors.primaryColor, onPressed: incrementAmount)
+        iconWidget(Icons.add, iconColor: AppColors.primaryColor, onPressed: () {
+          cart.add(widget.item);
+          incrementAmount();
+        })
       ],
     );
   }
@@ -49,9 +56,7 @@ class _ItemCounterWidgetState extends State<ItemCounterWidget> {
   }
 
   void updateParent() {
-    if (widget.onAmountChanged != null) {
-      widget.onAmountChanged(amount);
-    }
+    widget.onAmountChanged(amount);
   }
 
   Widget iconWidget(IconData iconData, {Color? iconColor, onPressed}) {

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gronow/models/grocery_item.dart';
 import 'package:gronow/screens/map/map.dart';
 import 'package:gronow/screens/product_details/product_details_screen.dart';
 import 'package:gronow/styles/colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gronow/widgets/grocery_item_card_widget.dart';
-import 'package:gronow/widgets/search_bar_widget.dart';
-import 'package:gronow/screens/home/cameraScreen.dart';
+import 'package:gronow/screens/home/camera_screen.dart';
 import 'package:gronow/screens/beacon-courier/beacon.dart';
 import 'package:gronow/screens/beacon-client/beacon.dart';
 
-import 'grocery_featured_Item_widget.dart';
+import '../cart/cart_screen.dart';
 import 'home_banner_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,26 +19,23 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
-        title: SvgPicture.asset(
-          "assets/icons/front.svg",
-          fit: BoxFit.scaleDown,
-        ),
-      ),
+          backgroundColor: AppColors.primaryColor,
+          title: const Text("Welcome to GroNow",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ))),
       drawer: Drawer(
         backgroundColor: AppColors.lightGrey,
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
+              DrawerHeader(
+                decoration: const BoxDecoration(
                   color: AppColors.background,
                 ),
-                child: Text('Drawer Header'),
+                child: SvgPicture.asset("assets/icons/front.svg"),
               ),
               Wrap(
                 // Important: Remove any padding from the ListView.
@@ -84,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return CourierBeaconScreen();
+                          return const CourierBeaconScreen();
                         },
                       ));
                     },
@@ -105,14 +101,17 @@ class HomeScreen extends StatelessWidget {
                   ),
                   ListTile(
                     title: const Text(
-                      'Item 2',
+                      'Cart',
                       style: TextStyle(color: Colors.black),
                     ),
                     onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
                       Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CartScreen(),
+                        ),
+                      );
                     },
                   ),
                 ],
@@ -126,10 +125,6 @@ class HomeScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                padded(const SearchBarWidget()),
-                const SizedBox(
-                  height: 25,
-                ),
                 padded(const HomeBanner()),
                 const SizedBox(
                   height: 25,
@@ -144,40 +139,18 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                padded(subTitle("Groceries")),
+                padded(subTitle("Meats")),
+                getHorizontalItemSlider(meats),
                 const SizedBox(
                   height: 15,
                 ),
-                SizedBox(
-                  height: 105,
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      GroceryFeaturedCard(
-                        groceryFeaturedItems[0],
-                        color: const Color(0xffF8A44C),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      GroceryFeaturedCard(
-                        groceryFeaturedItems[1],
-                        color: AppColors.primaryColor,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-                ),
+                padded(subTitle("Legumes")),
+                getHorizontalItemSlider(legumes),
                 const SizedBox(
                   height: 15,
                 ),
-                getHorizontalItemSlider(groceries),
+                padded(subTitle("Beverages")),
+                getHorizontalItemSlider(beverages),
                 const SizedBox(
                   height: 15,
                 ),
@@ -239,13 +212,6 @@ class HomeScreen extends StatelessWidget {
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const Spacer(),
-        const Text(
-          "See All",
-          style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryColor),
-        ),
       ],
     );
   }

@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
 import 'package:gronow/models/grocery_item.dart';
-import 'package:gronow/screens/cart/cart_screen.dart';
 import 'package:gronow/widgets/item_counter_widget.dart';
 
 import '../../styles/colors.dart';
-import '../home/home_screen.dart';
-import 'favourite_toggle_icon_widget.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final GroceryItem groceryItem;
@@ -51,7 +48,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         fontWeight: FontWeight.w600,
                         color: const Color(0xff7C7C7C),
                       ),
-                      trailing: const FavoriteToggleIcon(),
                     ),
                     const Spacer(),
                     Row(
@@ -62,6 +58,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               amount = newAmount;
                             });
                           },
+                          item: widget.groceryItem,
                         ),
                         const Spacer(),
                         Text(
@@ -87,12 +84,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     const Spacer(),
                     AppButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CartScreen(),
-                          ),
-                        );
+                        addToCart(widget.groceryItem);
+                        Navigator.pop(context);
                       },
                       label: "Add To Basket",
                     ),
@@ -105,6 +98,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ),
     );
+  }
+
+  addToCart(GroceryItem item) {
+    cart.add(item);
   }
 
   Widget getImageHeaderWidget() {

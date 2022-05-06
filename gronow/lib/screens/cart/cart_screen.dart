@@ -24,7 +24,7 @@ class CartScreen extends StatelessWidget {
               Column(
                 children: getChildrenWithSeperator(
                   addToLastChild: false,
-                  widgets: demoItems.map((e) {
+                  widgets: cart.map((e) {
                     return Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 25,
@@ -78,11 +78,21 @@ class CartScreen extends StatelessWidget {
         color: const Color(0xff489E67),
         borderRadius: BorderRadius.circular(4),
       ),
-      child: const Text(
-        "\$12.96",
-        style: TextStyle(fontWeight: FontWeight.w600),
+      child: Text(
+        "\$${getPrice()}",
+        style: const TextStyle(fontWeight: FontWeight.w600),
       ),
     );
+  }
+
+  String getPrice() {
+    var price = 0.0;
+
+    for (var item in cart) {
+      price = price + item.price;
+    }
+
+    return price.toStringAsFixed(2);
   }
 
   void showBottomSheet(context) {

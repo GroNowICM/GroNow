@@ -2,10 +2,12 @@
 
 import 'dart:io';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../styles/colors.dart';
+import 'home_screen.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key}) : super(key: key);
@@ -22,7 +24,6 @@ class _CameraAppState extends State<CameraScreen> {
   @override
   void dispose() {
     controller?.dispose();
-
     super.dispose();
   }
 
@@ -60,19 +61,38 @@ class _CameraAppState extends State<CameraScreen> {
 
   void onQRViewCreated(QRViewController controller) {
     setState(() => this.controller = controller);
-    controller.scannedDataStream
-        .listen((barcode) => setState(() => this.barcode = barcode));
+    controller.scannedDataStream.listen((barcode) => setState(() {
+          this.barcode = barcode;
+          AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+            if (!isAllowed) {
+              AwesomeNotifications().requestPermissionToSendNotifications();
+            } else {
+              AwesomeNotifications().createNotification(
+                  content: NotificationContent(
+                      id: 10,
+                      channelKey: 'basic_channel',
+                      title: 'GroNow Received',
+                      body: 'You just received your order!'));
+            }
+          });
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            ),
+          );
+        }));
   }
 
   Widget buildResult() => Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24), color: Colors.white24),
       child: Text(barcode != null ? 'Result : ${barcode!.code}' : 'Scan a code',
           maxLines: 3));
 
   Widget buildButtons() => Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white24,

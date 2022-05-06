@@ -18,6 +18,7 @@ class GroceryItemCardWidget extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
+        color: Colors.white,
         border: Border.all(
           color: borderColor,
         ),
