@@ -40,6 +40,11 @@ class User {
         password: tpassword.toString());
   }
 
+  static int forId(Map<String, Object?> map) {
+    var id = int.parse(map['id'].toString());
+    return id;
+  }
+
   @override
   String toString() {
     return 'User{id: $id, name: $name, username: $username, email: $email,password: $password}';
@@ -71,9 +76,23 @@ class Courier {
     };
   }
 
+  static Courier fromMap(Map<String, Object?> map) {
+    var tname = map['name'];
+    var tusername = map['username'];
+    var temail = map['email'];
+    var tpassword = map['password'];
+    var tplate = map['plate'];
+    return Courier(
+        name: tname.toString(),
+        username: tusername.toString(),
+        email: temail.toString(),
+        password: tpassword.toString(),
+        plate: tplate.toString());
+  }
+
   @override
   String toString() {
-    return 'Courier{id: $id, name: $name, username: $username,password:$password, email :$email, email :$plate}';
+    return 'User{id: $id, name: $name, username: $username, email: $email,password: $password, plate: $plate}';
   }
 }
 
@@ -119,6 +138,6 @@ class Package {
 
   @override
   String toString() {
-    return 'Cart{id: $id, userid: $userid, courierid: $courierid, items: $items}';
+    return 'Package{id: $id, userid: $userid, courierid: $courierid, items: $items}';
   }
 }

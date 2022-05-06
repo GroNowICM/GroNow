@@ -1,13 +1,11 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gronow/database_helper.dart';
-import 'package:sqflite_common/sqlite_api.dart';
 import 'package:gronow/styles/colors.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'app.dart';
 
+String globaluser = '';
 void main() async {
   // Avoid errors caused by flutter upgrade.
 // Importing 'package:flutter/widgets.dart' is required.

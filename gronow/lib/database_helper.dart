@@ -1,25 +1,22 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:gronow/database.dart';
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // ignore: camel_case_types
 class database_helper {
   // Make a singleton class
   static const String dbcreator =
-      "CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, username TEXT, email TEXT, password TEXT);GO;"
-      "CREATE TABLE courier(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,username TEXT, email TEXT, password TEXT, plate TEXT);GO;"
-      "CREATE TABLE package(id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, courierid INTEGER, items BLOB, FOREIGN KEY (userid) REFERENCES users(id) ON DELETE NO ACTION ON UPDATE NO ACTION, FOREIGN KEY (courierid) REFERENCES courier(id) ON DELETE NO ACTION ON UPDATE NO ACTION);GO;"
-      "CREATE TABLE cart(id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, FOREIGN KEY (userid) REFERENCES users(id) ON DELETE NO ACTION ON UPDATE NO ACTION, items BLOB);GO;";
-
+      "CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, username TEXT, email TEXT, password TEXT);GO;";
+  static const String dbcreator2 =
+      "CREATE TABLE courier(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,username TEXT, email TEXT, password TEXT, plate TEXT);GO;";
+  static const String dbcreator3 =
+      "CREATE TABLE package(id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, courierid INTEGER, items BLOB, FOREIGN KEY (userid) REFERENCES users(id) ON DELETE NO ACTION ON UPDATE NO ACTION, FOREIGN KEY (courierid) REFERENCES courier(id) ON DELETE NO ACTION ON UPDATE NO ACTION);GO;";
+  static const String dbcreator4 =
+      "CREATE TABLE cart(id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, items BLOB, FOREIGN KEY (userid) REFERENCES users(id) ON DELETE NO ACTION ON UPDATE NO ACTION);GO;";
   // Make a singleton class
   database_helper._privateConstructor();
-
   static final database_helper instance = database_helper._privateConstructor();
 
   // Use a single reference to the db.
@@ -37,8 +34,12 @@ class database_helper {
 
   // Init the database for the first time.
   _initDB() async {
+    log("iniite");
     return await openDatabase(join(await getDatabasesPath(), 'database.db'),
         version: 1, onCreate: (db, version) {
+      db.execute(dbcreator2);
+      db.execute(dbcreator3);
+      db.execute(dbcreator4);
       return db.execute(dbcreator);
     });
   }
@@ -107,7 +108,7 @@ class database_helper {
     Database? db = await instance.database;
 
     final List<Map<String, dynamic>> maps = await db!.query('courier');
-
+    log(maps.toString());
     return List.generate(maps.length, (i) {
       return Courier(
           name: maps[i]['name'],
@@ -271,16 +272,34 @@ class database_helper {
     List<Map<String, Object?>>? res = await db?.rawQuery(
         'SELECT name,username,email,password FROM users WHERE username=?',
         [username]);
-    return User.fromMap(res![0]);
+
+    if (res?.isEmpty as bool) {
+      return null;
+    } else {
+      return User.fromMap(res![0]);
+    }
+  }
+
+  Future<int?> getIdfromUserName(String username) async {
+    Database? db = await instance.database;
+
+    List<Map<String, Object?>>? res = await db?.rawQuery(
+        'SELECT id,username FROM users WHERE username=?', [username]);
+
+    if (res?.isEmpty as bool) {
+      return null;
+    } else {
+      return User.forId(res![0]);
+    }
   }
 
   Future<Courier?> findCourierByUserName(String username) async {
     Database? db = await instance.database;
-    try {
-      await db!.query('courier', where: 'username = ?', whereArgs: [username]);
-    } catch (e) {
-      return null;
-    }
-    return null;
+    List<Map<String, Object?>>? res = await db?.rawQuery(
+        'SELECT name,username,email,password, plate FROM courier WHERE username=?',
+        [username]);
+    log(instance.courier().toString());
+    log("soures" + res.toString() + "soures");
+    return Courier.fromMap(res![0]);
   }
 }

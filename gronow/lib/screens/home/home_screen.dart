@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gronow/main.dart';
 import 'package:gronow/models/grocery_item.dart';
+import 'package:gronow/screens/login_screen.dart';
 import 'package:gronow/screens/map/map.dart';
 import 'package:gronow/screens/product_details/product_details_screen.dart';
 import 'package:gronow/styles/colors.dart';
 import 'package:gronow/widgets/grocery_item_card_widget.dart';
 import 'package:gronow/screens/home/camera_screen.dart';
-import 'package:gronow/screens/beacon-courier/beacon.dart';
 import 'package:gronow/screens/beacon-client/beacon.dart';
 
 import '../cart/cart_screen.dart';
@@ -19,6 +20,24 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          actions: <Widget>[
+            Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage(
+                                  title: 'Login UI',
+                                )));
+                  },
+                  child: const Icon(
+                    Icons.logout,
+                    size: 22.0,
+                  ),
+                ))
+          ],
           backgroundColor: AppColors.primaryColor,
           title: const Text("Welcome to GroNow",
               style: TextStyle(
@@ -32,11 +51,30 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               DrawerHeader(
-                decoration: const BoxDecoration(
-                  color: AppColors.background,
-                ),
-                child: SvgPicture.asset("assets/icons/front.svg"),
-              ),
+                  decoration: const BoxDecoration(
+                    color: AppColors.background,
+                  ),
+                  child: Row(children: [
+                    SvgPicture.asset(
+                      "assets/icons/app_icon_color.svg",
+                      alignment: Alignment.topLeft,
+                      height: 100,
+                    ),
+                    SizedBox(
+                      width: 80,
+                    ),
+                    Column(children: [
+                      SvgPicture.asset(
+                        "assets/icons/account_icon.svg",
+                        alignment: Alignment.topRight,
+                        height: 90,
+                      ),
+                      Text(
+                        globaluser,
+                        textScaleFactor: 2.3,
+                      )
+                    ])
+                  ])),
               Wrap(
                 // Important: Remove any padding from the ListView.
                 runSpacing: 10,
@@ -72,22 +110,9 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                   ListTile(
+                    leading: const Icon(Icons.bluetooth),
                     title: const Text(
-                      'Courier Beacon',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return const CourierBeaconScreen();
-                        },
-                      ));
-                    },
-                  ),
-                  ListTile(
-                    title: const Text(
-                      'Client Beacon',
+                      'Find Courier',
                       style: TextStyle(color: Colors.black),
                     ),
                     onTap: () {
@@ -100,6 +125,7 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                   ListTile(
+                    leading: const Icon(Icons.shopping_cart),
                     title: const Text(
                       'Cart',
                       style: TextStyle(color: Colors.black),

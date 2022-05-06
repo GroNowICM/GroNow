@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:gronow/courierscreen.dart';
 import 'package:gronow/database.dart';
 import 'package:gronow/database_helper.dart';
+import 'package:gronow/main.dart';
 import 'package:gronow/screens/home/home_screen.dart';
-import 'package:sqflite/sqflite.dart';
 import 'register_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'Enter your username',
-                      prefixIcon: const Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.account_circle_rounded),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -107,12 +107,14 @@ class _LoginPageState extends State<LoginPage> {
 
                         User? u = await database_helper.instance
                             .findUserByUserName(username!);
+
                         log("fsd");
-                        log(u.toString());
+                        log(u.toString() + "cansa");
                         if (u is User) {
                           log(u.toString());
                           log(u.getPassword);
                           if (u.getPassword == password) {
+                            globaluser = username as String;
                             log("pylacen");
                             Navigator.pushReplacement(
                               context,
@@ -124,7 +126,19 @@ class _LoginPageState extends State<LoginPage> {
                             "Invalid password";
                           }
                         } else {
-                          "Invalid username";
+                          Courier? c = await database_helper.instance
+                              .findCourierByUserName(username!);
+                          log(c.toString() + "aquivcalrahojsak");
+                          if (c is Courier) {
+                            globaluser = username as String;
+                            log("foudas");
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const courierscreen(),
+                              ),
+                            );
+                          }
                         }
                       }
                     },

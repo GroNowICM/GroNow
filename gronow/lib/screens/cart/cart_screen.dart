@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
                   widgets: cart.map((e) {
                     return Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 25,
+                        horizontal: 10,
                       ),
                       width: double.maxFinite,
                       child: ChartItemWidget(
@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
                   }).toList(),
                   seperator: const Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 25,
+                      horizontal: 10,
                     ),
                     child: Divider(
                       thickness: 1,

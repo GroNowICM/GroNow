@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gronow/styles/colors.dart';
@@ -14,6 +14,9 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  Set<Polyline> _polylines = {};
+  List<LatLng> polylineCoordinates = [];
+  PolylinePoints polylinePoints = PolylinePoints();
   late GoogleMapController mapController;
   Future<LatLng> _getLocation() async {
     bool locationPermission = await Permission.location.status.isGranted;
@@ -61,6 +64,8 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    LatLng location = const LatLng(40.627287, -8.645504);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Map"),
@@ -77,7 +82,25 @@ class _MapScreenState extends State<MapScreen> {
                 }
                 return GoogleMap(
                   onMapCreated: _onMapCreated,
+                  polylines: {
+                    Polyline(
+                      polylineId: const PolylineId("line"),
+                      points: [
+                        (snapshot.data as LatLng),
+                        (snapshot.data as LatLng),
+                        (location),
+                        (location)
+                      ],
+                      width: 8,
+                    ),
+                  },
                   markers: {
+                    Marker(
+                        markerId: const MarkerId("Our Store"),
+                        position: const LatLng(40.627287, -8.645504),
+                        infoWindow: const InfoWindow(title: "Us"),
+                        icon: BitmapDescriptor.defaultMarkerWithHue(
+                            BitmapDescriptor.hueAzure)),
                     Marker(
                       markerId: MarkerId(snapshot.data.toString()),
                       position: snapshot.data as LatLng,
@@ -87,7 +110,7 @@ class _MapScreenState extends State<MapScreen> {
                     ),
                   },
                   initialCameraPosition: CameraPosition(
-                      target: snapshot.data as LatLng, zoom: 15.5),
+                      target: snapshot.data as LatLng, zoom: 13.5),
                 );
               }),
         ));

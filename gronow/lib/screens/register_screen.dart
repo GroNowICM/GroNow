@@ -129,8 +129,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             email: mail!,
                             password: password!);
                         database_helper.instance.insertUser(user);
-                        log("haha");
-                        log(database_helper.instance.user().toString());
+
+                        log(database_helper.instance.courier().toString());
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
