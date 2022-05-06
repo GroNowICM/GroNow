@@ -89,7 +89,20 @@ class Cart {
 
   @override
   String toString() {
-    return 'Cart{id: $cartid, userid: $userid, items: $items}';
+    return 'Cart{id: $cartid, userid: $userid, items: ${itemsToString()}}';
+  }
+
+  String itemsToString() {
+    var itemsStr = "[";
+    for (var i = 0; i < items.length; i++) {
+      if (i < items.length - 1) {
+        itemsStr += '"${items[i]}",';
+      } else {
+        itemsStr += '"${items[i]}"';
+      }
+    }
+
+    return itemsStr + "]";
   }
 }
 

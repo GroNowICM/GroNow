@@ -53,11 +53,13 @@ class _ClientBeaconScreenState extends State<ClientBeaconScreen> {
             proximityUUID: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'));
       } else {
         log("Device is Android");
-        regions.add(Region(identifier: 'com.beacon'));
+        regions.add(Region(identifier: 'gronow.client'));
       }
 
       _streamRanging =
-          flutterBeacon.ranging(regions).listen((RangingResult result) {});
+          flutterBeacon.ranging(regions).listen((RangingResult result) {
+        log(result.beacons.toString());
+      });
       _streamRanging?.onData((data) {
         for (var i = 0; i < data.beacons.length; i++) {
           //add courier crl

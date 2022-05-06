@@ -17,12 +17,12 @@ var exclusiveOffers = [
   GroceryItem(
       name: "Organic Bananas",
       description: "7pcs, Price/Kg",
-      price: 4.99,
-      imagePath: "assets/images/grocery_images/lemon.png"),
+      price: 3.69,
+      imagePath: "assets/images/grocery_images/banana.png"),
   GroceryItem(
       name: "Red Apple",
       description: "1kg, Price/Kg",
-      price: 4.99,
+      price: 2.30,
       imagePath: "assets/images/grocery_images/apple.png"),
   GroceryItem(
       name: "Yellow Sugar",
@@ -45,7 +45,7 @@ var bestSelling = [
   GroceryItem(
       name: "Grapes",
       description: "1kg, Price/Kg",
-      price: 4.99,
+      price: 1.99,
       imagePath: "assets/images/grocery_images/grapes.png"),
 ];
 
@@ -63,12 +63,12 @@ var meats = [
   GroceryItem(
       name: "Cow Meat",
       description: "150gm, Price/Kg",
-      price: 6.99,
+      price: 6.79,
       imagePath: "assets/images/grocery_images/cow.png"),
   GroceryItem(
       name: "Goat Meat",
       description: "350gm, Price/Kg",
-      price: 4.99,
+      price: 4.39,
       imagePath: "assets/images/grocery_images/goat.png"),
 ];
 

@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
+import 'package:gronow/database.dart';
 
 import '../../models/grocery_item.dart';
 import '../order_accepted_screen.dart';
@@ -154,7 +157,16 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
   void onPlaceOrderClicked() {
     Navigator.pop(context);
     showDialog(
-        builder: (context) => const OrderAcceptedScreen(), context: context);
+        builder: (context) {
+          return const OrderAcceptedScreen();
+        },
+        context: context);
+    var list = [];
+    for (var item in cart) {
+      list.add(item.name);
+    }
+    Cart cartItem = Cart(userid: 1, items: list);
+    log(cartItem.toString());
     cart = [];
   }
 }

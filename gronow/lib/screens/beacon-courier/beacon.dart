@@ -24,9 +24,16 @@ class _CourierBeaconScreenState extends State<CourierBeaconScreen> {
           .setUUID("FF11EE22-DD33-CC44-BB55-AA6699778888")
           .setMajorId(1)
           .setMinorId(100)
+          .setLayout('m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24')
+          .setManufacturerId(0x004c)
           .start();
       log("Broadcasting");
     }
+  }
+
+  void stopBroadcast() async {
+    beaconBroadcast.stop();
+    log("Stopping broadcast");
   }
 
   @override
@@ -51,7 +58,9 @@ class _CourierBeaconScreenState extends State<CourierBeaconScreen> {
                 ),
                 Container(
                   child: ElevatedButton(
-                    onPressed: () async {},
+                    onPressed: () async {
+                      stopBroadcast();
+                    },
                     child: const Text("Stop Scanning"),
                   ),
                   margin: const EdgeInsets.all(8),
