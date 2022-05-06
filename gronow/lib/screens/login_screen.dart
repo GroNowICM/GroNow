@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:gronow/database.dart';
 import 'package:gronow/database_helper.dart';
 import 'package:gronow/screens/home/home_screen.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,6 +19,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
+
+  String? username;
+
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +49,12 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   TextFormField(
-                    validator: (value) => EmailValidator.validate(value!)
-                        ? null
-                        : "Please enter a valid email",
+                    onSaved: (String? us) {
+                      username = us;
+                    },
                     maxLines: 1,
                     decoration: InputDecoration(
-                      hintText: 'Enter your email',
+                      hintText: 'Enter your username',
                       prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -63,6 +70,10 @@ class _LoginPageState extends State<LoginPage> {
                         return 'Please enter your password';
                       }
                       return null;
+                    },
+                    onSaved: (String? value) {
+                      password = value;
+                      log(password!);
                     },
                     maxLines: 1,
                     obscureText: true,
@@ -90,14 +101,31 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
-                          ),
-                        );
+                        _formKey.currentState?.save();
+
+                        User? u = await database_helper.instance
+                            .findUserByUserName(username!);
+                        log("fsd");
+                        log(u.toString());
+                        if (u is User) {
+                          log(u.toString());
+                          log(u.getPassword);
+                          if (u.getPassword == password) {
+                            log("pylacen");
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
+                              ),
+                            );
+                          } else {
+                            "Invalid password";
+                          }
+                        } else {
+                          "Invalid username";
+                        }
                       }
                     },
                     style: ElevatedButton.styleFrom(

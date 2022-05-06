@@ -12,6 +12,13 @@ class User {
       required this.email,
       required this.password});
 
+  get getName => name;
+
+  get getUsername => username;
+
+  get getEmail => email;
+
+  get getPassword => password;
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -19,6 +26,18 @@ class User {
       'email': email,
       'password': password
     };
+  }
+
+  static User fromMap(Map<String, Object?> map) {
+    var tname = map['name'];
+    var tusername = map['username'];
+    var temail = map['email'];
+    var tpassword = map['password'];
+    return User(
+        name: tname.toString(),
+        username: tusername.toString(),
+        email: temail.toString(),
+        password: tpassword.toString());
   }
 
   @override

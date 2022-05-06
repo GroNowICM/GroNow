@@ -24,13 +24,14 @@ class database_helper {
 
   // Use a single reference to the db.
   static Database? _db;
-  late Future<Database?> _database;
+  Future<Database?>? _database;
 
   // Use this getter to use the database.
   Future<Database?> get database async {
-    if (_db != null) return _database;
+    if (_db != null) return _db;
     // Instantiate db the first time it is accessed
     _db = await _initDB();
+
     return _db;
   }
 
@@ -45,7 +46,6 @@ class database_helper {
   Future<void> insertUser(User user) async {
     // Get a reference to the database.
     Database? db = await instance.database;
-    log(user.toString());
     await db!.insert(
       'users',
       user.toMap(),
@@ -89,7 +89,6 @@ class database_helper {
   // A method that retrieves all the users from the users table.
   Future<List<User>> user() async {
     // Get a reference to the database.
-    log("boas");
     Database? db = await instance.database;
 
     final List<Map<String, dynamic>> maps = await db!.query('users');
@@ -262,5 +261,26 @@ class database_helper {
       // Pass the Dog's id as a whereArg to prevent SQL injection.
       whereArgs: [id],
     );
+  }
+
+  Future<User?> findUserByUserName(String username) async {
+    Database? db = await instance.database;
+    log("next" + username);
+    log(db?.toString() as String);
+    log("prev");
+    List<Map<String, Object?>>? res = await db?.rawQuery(
+        'SELECT name,username,email,password FROM users WHERE username=?',
+        [username]);
+    return User.fromMap(res![0]);
+  }
+
+  Future<Courier?> findCourierByUserName(String username) async {
+    Database? db = await instance.database;
+    try {
+      await db!.query('courier', where: 'username = ?', whereArgs: [username]);
+    } catch (e) {
+      return null;
+    }
+    return null;
   }
 }
