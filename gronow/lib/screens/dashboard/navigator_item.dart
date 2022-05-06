@@ -5,8 +5,6 @@ import 'package:gronow/screens/explore_screen.dart';
 import 'package:gronow/screens/home/home_screen.dart';
 import 'package:gronow/screens/map/map.dart';
 
-import '../favourite_screen.dart';
-
 class NavigatorItem {
   final String label;
   final String iconPath;

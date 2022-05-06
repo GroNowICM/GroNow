@@ -1,7 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:gronow/database_helper.dart';
 import 'package:gronow/screens/home/home_screen.dart';
-import 'package:gronow/styles/colors.dart';
+import 'package:sqflite/sqflite.dart';
 import 'register_screen.dart';
 
 class LoginPage extends StatefulWidget {

@@ -1,43 +1,44 @@
-import 'dart:async';
-
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:flutter/widgets.dart';
 // Avoid errors caused by flutter upgrade.
 
 class User {
-  final int id;
+  int? id;
   final String name;
   final String username;
   final String email;
-
-  const User(
-      {required this.id,
-      required this.name,
+  final String password;
+  User(
+      {required this.name,
       required this.username,
-      required this.email});
+      required this.email,
+      required this.password});
 
   Map<String, dynamic> toMap() {
-    return {'id': id, 'name': name, 'username': username, 'email': email};
+    return {
+      'name': name,
+      'username': username,
+      'email': email,
+      'password': password
+    };
   }
 
   @override
   String toString() {
-    return 'User{id: $id, name: $name, username: $username, email :$email}';
+    return 'User{id: $id, name: $name, username: $username, email: $email,password: $password}';
   }
 }
 
 class Courier {
-  final int id;
+  int? id;
   final String name;
   final String username;
   final String email;
   final String plate;
+  final String password;
 
-  const Courier(
-      {required this.id,
-      required this.name,
+  Courier(
+      {required this.name,
       required this.username,
+      required this.password,
       required this.email,
       required this.plate});
   Map<String, dynamic> toMap() {
@@ -46,22 +47,23 @@ class Courier {
       'name': name,
       'username': username,
       'email': email,
-      'plate': plate
+      'plate': plate,
+      'password': password
     };
   }
 
   @override
   String toString() {
-    return 'Courier{id: $id, name: $name, username: $username, email :$email, email :$plate}';
+    return 'Courier{id: $id, name: $name, username: $username,password:$password, email :$email, email :$plate}';
   }
 }
 
 class Cart {
-  final int cartid;
+  int? cartid;
   final int userid;
   final List items;
 
-  const Cart({required this.cartid, required this.userid, required this.items});
+  Cart({required this.userid, required this.items});
   Map<String, dynamic> toMap() {
     return {'id': cartid, 'userid': userid, 'items': items};
   }
@@ -73,16 +75,12 @@ class Cart {
 }
 
 class Package {
-  final int id;
+  int? id;
   final int userid;
   final int courierid;
   final List items;
 
-  const Package(
-      {required this.id,
-      required this.userid,
-      required this.courierid,
-      required this.items});
+  Package({required this.userid, required this.courierid, required this.items});
   Map<String, dynamic> toMap() {
     return {'id': id, 'userid': userid, 'courierid': courierid, 'items': items};
   }

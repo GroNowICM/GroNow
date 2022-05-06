@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:gronow/models/grocery_item.dart';
 import 'package:gronow/screens/map/map.dart';
@@ -100,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return ClientBeaconScreen();
+                          return const ClientBeaconScreen();
                         },
                       ));
                     },

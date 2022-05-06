@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gronow/common_widgets/app_button.dart';
 import 'package:gronow/common_widgets/app_text.dart';
-import 'package:gronow/screens/dashboard/dashboard_screen.dart';
 import 'package:gronow/screens/login_screen.dart';
 import 'package:gronow/styles/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';

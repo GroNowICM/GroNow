@@ -16,7 +16,7 @@ var demoItems = [
       name: "Organic Bananas",
       description: "7pcs, Price/Kg",
       price: 4.99,
-      imagePath: "assets/images/grocery_images/banana.png"),
+      imagePath: "assets/images/grocery_images/lemon.png"),
   GroceryItem(
       name: "Red Apple",
       description: "1kg, Price/Kg",

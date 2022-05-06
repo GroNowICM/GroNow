@@ -1,6 +1,7 @@
+// ignore_for_file: file_names
+
 import 'dart:io';
 
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -20,13 +21,13 @@ class _CameraAppState extends State<CameraScreen> {
 
   @override
   void dispose() {
-    controller?.dispose(); // TODO: implement dispose
+    controller?.dispose();
+
     super.dispose();
   }
 
   @override
   void reassemble() async {
-    // TODO: implement reassemble
     super.reassemble();
     if (Platform.isAndroid) {
       await controller!.pauseCamera();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gronow/screens/splash_screen.dart';
 import 'package:gronow/styles/colors.dart';
-import 'package:gronow/styles/theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

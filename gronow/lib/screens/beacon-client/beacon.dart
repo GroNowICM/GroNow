@@ -6,12 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:location/location.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../styles/colors.dart';
 
 class ClientBeaconScreen extends StatefulWidget {
-  ClientBeaconScreen({Key? key}) : super(key: key);
+  const ClientBeaconScreen({Key? key}) : super(key: key);
 
   @override
   State<ClientBeaconScreen> createState() => _ClientBeaconScreenState();
@@ -66,29 +65,27 @@ class _ClientBeaconScreenState extends State<ClientBeaconScreen> {
         backgroundColor: AppColors.primaryColor,
       ),
       body: Center(
-        child: Container(
-          child: Row(
-            children: [
-              Container(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    startScanning();
-                  },
-                  child: Text("Start Scanning"),
-                ),
-                margin: EdgeInsets.all(8),
+        child: Row(
+          children: [
+            Container(
+              child: ElevatedButton(
+                onPressed: () async {
+                  startScanning();
+                },
+                child: const Text("Start Scanning"),
               ),
-              Container(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    stopScanning();
-                  },
-                  child: Text("Stop Scanning"),
-                ),
-                margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
+            ),
+            Container(
+              child: ElevatedButton(
+                onPressed: () async {
+                  stopScanning();
+                },
+                child: const Text("Stop Scanning"),
               ),
-            ],
-          ),
+              margin: const EdgeInsets.all(8),
+            ),
+          ],
         ),
       ),
     );

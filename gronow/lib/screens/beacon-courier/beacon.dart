@@ -1,12 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:location/location.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../styles/colors.dart';
 
@@ -51,18 +48,18 @@ class _CourierBeaconScreenState extends State<CourierBeaconScreen> {
                   onPressed: () async {
                     startBroadcast();
                   },
-                  child: Text("Start Scanning"),
+                  child: const Text("Start Scanning"),
                 ),
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
               ),
               Container(
                 child: ElevatedButton(
                   onPressed: () async {
                     stopScanning();
                   },
-                  child: Text("Stop Scanning"),
+                  child: const Text("Stop Scanning"),
                 ),
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
               ),
             ],
           ),
