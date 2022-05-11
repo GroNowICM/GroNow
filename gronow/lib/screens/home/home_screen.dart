@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       height: 100,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 80,
                     ),
                     Column(children: [

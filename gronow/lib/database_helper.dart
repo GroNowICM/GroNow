@@ -34,7 +34,6 @@ class database_helper {
 
   // Init the database for the first time.
   _initDB() async {
-    log("iniite");
     return await openDatabase(join(await getDatabasesPath(), 'database.db'),
         version: 1, onCreate: (db, version) {
       db.execute(dbcreator2);
@@ -93,7 +92,6 @@ class database_helper {
     Database? db = await instance.database;
 
     final List<Map<String, dynamic>> maps = await db!.query('users');
-    log(maps.toString());
     return List.generate(maps.length, (i) {
       return User(
           name: maps[i]['name'],
@@ -108,7 +106,6 @@ class database_helper {
     Database? db = await instance.database;
 
     final List<Map<String, dynamic>> maps = await db!.query('courier');
-    log(maps.toString());
     return List.generate(maps.length, (i) {
       return Courier(
           name: maps[i]['name'],
@@ -266,9 +263,6 @@ class database_helper {
 
   Future<User?> findUserByUserName(String username) async {
     Database? db = await instance.database;
-    log("next" + username);
-    log(db?.toString() as String);
-    log("prev");
     List<Map<String, Object?>>? res = await db?.rawQuery(
         'SELECT name,username,email,password FROM users WHERE username=?',
         [username]);
@@ -298,8 +292,6 @@ class database_helper {
     List<Map<String, Object?>>? res = await db?.rawQuery(
         'SELECT name,username,email,password, plate FROM courier WHERE username=?',
         [username]);
-    log(instance.courier().toString());
-    log("soures" + res.toString() + "soures");
     return Courier.fromMap(res![0]);
   }
 }

@@ -73,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     onSaved: (String? value) {
                       password = value;
-                      log(password!);
                     },
                     maxLines: 1,
                     obscureText: true,
@@ -108,14 +107,9 @@ class _LoginPageState extends State<LoginPage> {
                         User? u = await database_helper.instance
                             .findUserByUserName(username!);
 
-                        log("fsd");
-                        log(u.toString() + "cansa");
                         if (u is User) {
-                          log(u.toString());
-                          log(u.getPassword);
                           if (u.getPassword == password) {
                             globaluser = username as String;
-                            log("pylacen");
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -128,10 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                         } else {
                           Courier? c = await database_helper.instance
                               .findCourierByUserName(username!);
-                          log(c.toString() + "aquivcalrahojsak");
                           if (c is Courier) {
                             globaluser = username as String;
-                            log("foudas");
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

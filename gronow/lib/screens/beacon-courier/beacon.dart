@@ -28,13 +28,11 @@ class _CourierBeaconScreenState extends State<CourierBeaconScreen> {
           .setManufacturerId(0x004c)
           .setTransmissionPower(-80000)
           .start();
-      log("Broadcasting");
     }
   }
 
   void stopBroadcast() async {
     beaconBroadcast.stop();
-    log("Stopping broadcast");
   }
 
   @override

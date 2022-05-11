@@ -82,7 +82,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     maxLines: 1,
                     onSaved: (String? mai) {
                       mail = mai;
-                      log(mail!);
                     },
                     decoration: InputDecoration(
                       hintText: 'Enter your email',
@@ -113,7 +112,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     onSaved: (String? value) {
                       password = value;
-                      log(password!);
                     },
                   ),
                   const SizedBox(
@@ -130,7 +128,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             password: password!);
                         database_helper.instance.insertUser(user);
 
-                        log(database_helper.instance.courier().toString());
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

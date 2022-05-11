@@ -166,7 +166,6 @@ class _CheckoutBottomSheetState extends State<CheckoutBottomSheet> {
       list.add(item.name);
     }
     Cart cartItem = Cart(userid: 1, items: list);
-    log(cartItem.toString());
     cart = [];
   }
 }

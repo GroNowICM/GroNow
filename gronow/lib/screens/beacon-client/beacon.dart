@@ -27,7 +27,6 @@ class _ClientBeaconScreenState extends State<ClientBeaconScreen> {
       if (!isAllowed) {
         AwesomeNotifications().requestPermissionToSendNotifications();
       } else {
-        log("Notifications are allowed");
         AwesomeNotifications().createNotification(
             content: NotificationContent(
                 id: 10,
@@ -52,7 +51,6 @@ class _ClientBeaconScreenState extends State<ClientBeaconScreen> {
             identifier: 'Apple Airlocate',
             proximityUUID: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'));
       } else {
-        log("Device is Android");
         regions.add(Region(identifier: 'gronow.client'));
       }
 
@@ -61,9 +59,7 @@ class _ClientBeaconScreenState extends State<ClientBeaconScreen> {
         log("checking for results");
       });
       _streamRanging?.onData((data) {
-        log(data.beacons.toString());
         for (var i = 0; i < data.beacons.length; i++) {
-          //add courier crl
           if (data.beacons[i].proximityUUID ==
               "FF11EE22-DD33-CC44-BB55-AA6699778888") {
             sendNotification();
